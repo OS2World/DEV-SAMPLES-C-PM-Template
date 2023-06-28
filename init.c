@@ -56,7 +56,7 @@
 
 /*
  *  Entry point declarations
- *
+ */
 
 /**************************************************************************
  *
@@ -83,6 +83,7 @@
  *                FALSE = initialization failed
  *
  *************************************************************************/
+ 
 BOOL Init(VOID)
 {
 
@@ -100,11 +101,11 @@ BOOL Init(VOID)
    }
 
    /* load application name from resource file */
-   if(0 == WinLoadString(hab, (HMODULE)0, IDS_APPNAME, MAXNAMEL, szAppName))
+   if(0 == WinLoadString(hab, (HMODULE)0, IDS_APPNAME, MAXNAMEL, (PSZ) szAppName))
       return FALSE;
 
    /* load "untitled" string */
-   if(!WinLoadString(hab, (HMODULE)0, IDS_UNTITLED, MESSAGELEN, szUntitled))
+   if(!WinLoadString(hab, (HMODULE)0, IDS_UNTITLED, MESSAGELEN, (PSZ) szUntitled))
        return FALSE;
 
    /* register the main client window class */
@@ -171,9 +172,9 @@ MRESULT InitMainWindow(HWND hwnd, MPARAM mp1, MPARAM mp2)
     *  warning at compile time.
     */
 
-   hwnd;
-   mp1;
-   mp2;
+   // hwnd;  	// Removed. Gcc said: warning: statement with no effect [-Wunused-value]
+   // mp1; 		// Removed. Gcc said: warning: statement with no effect [-Wunused-value]
+   // mp2;	 	// Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of InitMainWindow   */
 
 
@@ -226,6 +227,6 @@ VOID ExitProc(USHORT usTermCode)
      *  warning at compile time
      */
 
-   usTermCode;
+   //usTermCode;	 // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of ExitProc    */
 /***************************  End of init.c  ***************************/

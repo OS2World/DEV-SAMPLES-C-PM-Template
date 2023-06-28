@@ -349,8 +349,8 @@ VOID  HelpTutorial(VOID)
    }
    WinMessageBox(HWND_DESKTOP,
                  hwndMain,
-                 szText,
-                 "Tutorial",
+                 (PCSZ) szText,
+                 (PCSZ) "Tutorial",
                  MB_OK | MB_INFORMATION,
                  FALSE);
 

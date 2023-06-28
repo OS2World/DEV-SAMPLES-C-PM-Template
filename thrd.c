@@ -237,7 +237,7 @@ VOID BackgroundThread(ULONG ulThreadParam)
    DosExit(EXIT_THREAD, 0L);
 
    /* the thread parameter is not currently used */
-   ulThreadParam;
+   // ulThreadParam;  // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of BackgroundThread */
 
 

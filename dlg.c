@@ -50,7 +50,7 @@
  *  Entry point declarations
  */
 
-MRESULT EXPENTRY ProductInfoDlgProc(HWND hwnd, USHORT msg,
+MRESULT EXPENTRY ProductInfoDlgProc(HWND hwnd, ULONG msg,
                                   MPARAM mp1, MPARAM mp2);
 VOID SetSysMenu( HWND hDlg );
 
@@ -79,7 +79,7 @@ VOID SetSysMenu( HWND hDlg );
  *************************************************************************/
 MRESULT EXPENTRY ProductInfoDlgProc(
                          HWND hwnd,      /* handle of window */
-                         USHORT msg,     /* id of message */
+                         ULONG msg,     /* id of message */
                          MPARAM mp1,     /* first message parameter */
                          MPARAM mp2)     /* second message parameter */
 {
@@ -125,7 +125,7 @@ VOID SetSysMenu(HWND hDlg)
     MENUITEM Mi;
     ULONG    Pos;
     MRESULT  Id;
-    SHORT    cItems;
+    LONG     cItems;
 
     /******************************************************************/
     /*  We only want Move and Close in the system menu.               */
@@ -135,7 +135,7 @@ VOID SetSysMenu(HWND hDlg)
     WinSendMsg( hSysMenu, MM_QUERYITEM
               , MPFROM2SHORT(SC_SYSMENU, FALSE), MPFROMP((PCH) & Mi));
     Pos = 0L;
-    cItems = (SHORT)WinSendMsg( Mi.hwndSubMenu, MM_QUERYITEMCOUNT,
+    cItems = (LONG)WinSendMsg( Mi.hwndSubMenu, MM_QUERYITEMCOUNT,
                                 (MPARAM)NULL, (MPARAM)NULL);
     while (cItems--)
     {
@@ -149,7 +149,7 @@ VOID SetSysMenu(HWND hDlg)
             break;
         default:
             WinSendMsg( Mi.hwndSubMenu, MM_DELETEITEM
-                      , MPFROM2SHORT((USHORT)Id, TRUE), (MPARAM)NULL);
+                      , MPFROM2SHORT((ULONG)Id, TRUE), (MPARAM)NULL);
         }
     }
 }   /*  End of SetSysMenu  */

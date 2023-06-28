@@ -311,7 +311,7 @@ ULONG MessageBox(HWND hwndOwner, ULONG idMsg, ULONG fsStyle, BOOL fBeep)
 
    return(WinMessageBox(HWND_DESKTOP,
                         hwndOwner,
-                        szText,
+                        (PCSZ) szText,
                         (PSZ)NULL,
                         MSGBOXID,
                         fsStyle));

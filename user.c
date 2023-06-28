@@ -130,7 +130,7 @@ VOID UserCommand(MPARAM mp1, MPARAM mp2)
     *  it is referenced here to prevent an 'Unreferenced Parameter'
     *  warning at compile time.
     */
-   mp2;
+   // mp2; // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of UserCommand  */
 
 /**************************************************************************

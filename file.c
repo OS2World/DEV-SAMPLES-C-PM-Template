@@ -94,7 +94,7 @@ VOID FileNew(MPARAM mp2)
      *  it is referenced here to prevent an 'Unreferenced Parameter'
      *  warning at compile time.
      */
-    mp2;
+    //mp2;	 // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of FileNew   */
 
 
@@ -131,20 +131,20 @@ VOID FileOpen(MPARAM mp2)
 
    fdg.cbSize = sizeof(FILEDLG);
 
-   if(!WinLoadString(hab, (HMODULE)0, IDS_OPEN, MESSAGELEN, szTitle))
+   if(!WinLoadString(hab, (HMODULE)0, IDS_OPEN, MESSAGELEN, (PSZ) szTitle))
    {
       MessageBox(hwndMain, IDMSG_CANNOTLOADSTRING, MB_OK | MB_ERROR, TRUE);
       return;
    }
 
-   if(!WinLoadString(hab, (HMODULE)0, IDS_OPEN, MESSAGELEN, szButton))
+   if(!WinLoadString(hab, (HMODULE)0, IDS_OPEN, MESSAGELEN, (PSZ) szButton))
    {
       MessageBox(hwndMain, IDMSG_CANNOTLOADSTRING, MB_OK | MB_ERROR, TRUE);
       return;
    }
 
-   fdg.pszTitle = szTitle;
-   fdg.pszOKButton = szButton;
+   fdg.pszTitle = (PSZ) szTitle;
+   fdg.pszOKButton = (PSZ) szButton;
    fdg.ulUser = 0L;
    fdg.fl = FDS_HELPBUTTON | FDS_CENTER | FDS_OPEN_DIALOG;
    fdg.pfnDlgProc = (PFNWP)TemplateOpenFilterProc;
@@ -156,7 +156,7 @@ VOID FileOpen(MPARAM mp2)
    fdg.y = 0;
 
    if(!WinLoadString(hab, (HMODULE)0, IDS_FILEOPENEXT, CCHMAXPATH,
-                     fdg.szFullFile))
+                     (PSZ) fdg.szFullFile))
    {
       MessageBox(hwndMain, IDMSG_CANNOTLOADSTRING, MB_OK | MB_ERROR, TRUE);
       return;
@@ -180,7 +180,7 @@ VOID FileOpen(MPARAM mp2)
 
    if(fdg.lReturn == ID_OK)
    {
-      if( DosOpen(fdg.szFullFile,     /* file name from Open dialog */
+      if( DosOpen( (PCSZ)fdg.szFullFile,     /* file name from Open dialog */
                   &hfIn,              /* file handle returned */
                   &ulAction,
                   0L,
@@ -224,7 +224,7 @@ VOID FileOpen(MPARAM mp2)
    /* This routine currently doesn't use the mp2 parameter but       *\
     *  it is referenced here to prevent an 'Unreferenced Parameter'
    \*  warning at compile time.                                      */
-   mp2;
+   //mp2;	 // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of FileOpen   */
 
 /**************************************************************************
@@ -268,7 +268,7 @@ VOID FileSave(MPARAM mp2)
    }
 
    /* open the file */
-   if( DosOpen(szFullPath,         /* file name of current document */
+   if( DosOpen( (PCSZ) szFullPath,         /* file name of current document */
                &hf,                /* file handle of output file */
                &ulAction,
                0L,
@@ -291,7 +291,7 @@ VOID FileSave(MPARAM mp2)
    /* This routine currently doesn't use the mp2 parameter but       *\
     *  it is referenced here to prevent an 'Unreferenced Parameter'
    \*  warning at compile time.                                      */
-   mp2;
+   // mp2;	 // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of FileSave   */
 
 /**************************************************************************
@@ -329,7 +329,7 @@ VOID FileSaveAs(MPARAM mp2)
        * user wants to overwrite it.  If he doesn't, then get a new
        * file name
        */
-      if( DosOpen(szFullPath,     /* file name from, GetFileName() */
+      if( DosOpen( (PCSZ) szFullPath,     /* file name from, GetFileName() */
                   &hf,            /* handle of opened file */
                   &ulAction,
                   0L,
@@ -380,7 +380,7 @@ VOID FileSaveAs(MPARAM mp2)
     *  it is referenced here to prevent an 'Unreferenced Parameter'
     *  warning at compile time.
     */
-   mp2;
+   // mp2;	 // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of FileSaveAs   */
 
 
@@ -408,7 +408,7 @@ VOID WriteFileToDisk(HFILE hf)                                          \
      *  Place routine to write a disk file here.
      */
 
-    hf;
+    //hf;	 // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of WriteFileToDisk   */
 
 
@@ -440,20 +440,20 @@ BOOL GetFileName(VOID)
 
    fdg.cbSize = sizeof(FILEDLG);
 
-   if(!WinLoadString(hab, 0, IDS_SAVE, MESSAGELEN, szTitle))
+   if(!WinLoadString(hab, 0, IDS_SAVE, MESSAGELEN, (PSZ) szTitle))
    {
        MessageBox(hwndMain, IDMSG_CANNOTLOADSTRING, MB_OK | MB_ERROR, TRUE);
        return FALSE;
    }
 
-   if(!WinLoadString(hab, 0, IDS_SAVE, MESSAGELEN, szButton))
+   if(!WinLoadString(hab, 0, IDS_SAVE, MESSAGELEN, (PSZ) szButton))
    {
        MessageBox(hwndMain, IDMSG_CANNOTLOADSTRING, MB_OK | MB_ERROR, TRUE);
        return FALSE;
    }
 
-   fdg.pszTitle = szTitle;
-   fdg.pszOKButton = szButton;
+   fdg.pszTitle = (PSZ) szTitle;
+   fdg.pszOKButton = (PSZ) szButton;
 
    fdg.ulUser = 0L;
    fdg.fl = FDS_HELPBUTTON | FDS_CENTER | FDS_SAVEAS_DIALOG;
@@ -514,23 +514,23 @@ VOID UpdateTitleText(HWND hwnd)
    CHAR szSeparator[TITLESEPARATORLEN+1];
    PSZ pszT;
 
-   WinLoadString(hab, (HMODULE)0, IDS_APPNAME, MAXNAMEL, szBuf);
+   WinLoadString(hab, (HMODULE)0, IDS_APPNAME, MAXNAMEL, (PSZ) szBuf);
    WinLoadString(hab,
                  (HMODULE)0,
                  IDS_TITLEBARSEPARATOR,
                  TITLESEPARATORLEN,
-                 szSeparator);
+                 (PSZ) szSeparator);
 
    strcat(szBuf, szSeparator);
 
    if(szFullPath[0] == '\0')
-      pszT = szUntitled;
+      pszT = (PSZ) szUntitled;
    else
-      pszT = szFullPath;
+      pszT = (PSZ) szFullPath;
 
-   strcat(szBuf, pszT);
+   strcat(szBuf, (const char * restrict) pszT);
 
-   WinSetWindowText(WinWindowFromID(hwnd, FID_TITLEBAR), szBuf);
+   WinSetWindowText(WinWindowFromID(hwnd, FID_TITLEBAR), (PCSZ) szBuf);
 }   /* End of UpdateTitleText   */
 
 /**************************************************************************

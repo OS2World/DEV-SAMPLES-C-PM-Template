@@ -1,16 +1,18 @@
-;******* TEMPLATE  C Sample Program Module Definition File (.DEF) ********
+;-------------------------------------------------------------------------
+; TEMPLATE.DEF module definition file
+;
+;  TEMPLATE  C Sample Program Module Definition File (.DEF)
 ;
 ;  The module definition file supplies extra information about the program
 ;  module to the LINKER.
-;  Copyright 1991 IBM Corporation
-;
-;  Note the WINDOWAPI keyword is required for link386
-NAME    template WINDOWAPI
+;  
+;--------------------------------------------------------------------------
 
-DESCRIPTION 'PM Template application'
+NAME    TEMPLATE	WINDOWAPI
+
+DESCRIPTION '@#OS2World:1.01#@##1## 23 Jun 2023 20:00:00     ARCAOS-507::::::v1.01@@PM Template application'
 
 CODE    MOVEABLE
 DATA    MOVEABLE MULTIPLE
 
-HEAPSIZE  8192
 STACKSIZE 16384

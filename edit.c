@@ -68,7 +68,7 @@ VOID EditUndo(MPARAM mp2)
      *  it is referenced here to prevent an 'Unreferenced Parameter'
      *  warning at compile time.
      */
-    mp2;
+    //mp2;	 // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of EditUndo   */
 
 /**************************************************************************
@@ -93,7 +93,7 @@ VOID EditCut(MPARAM mp2)
      *  it is referenced here to prevent an 'Unreferenced Parameter'
      *  warning at compile time.
      */
-    mp2;
+    // mp2;	 // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of EditCut   */
 
 /**************************************************************************
@@ -118,7 +118,7 @@ VOID EditCopy(MPARAM mp2)
      *  it is referenced here to prevent an 'Unreferenced Parameter'
      *  warning at compile time.
      */
-    mp2;
+    // mp2;	 // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of EditCopy   */
 
 /**************************************************************************
@@ -143,7 +143,7 @@ VOID EditPaste(MPARAM mp2)
      *  it is referenced here to prevent an 'Unreferenced Parameter'
      *  warning at compile time.
      */
-    mp2;
+    // mp2;	 // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of EditPaste    */
 
 /**************************************************************************
@@ -168,6 +168,6 @@ VOID EditClear(MPARAM mp2)
      *  it is referenced here to prevent an 'Unreferenced Parameter'
      *  warning at compile time.
      */
-    mp2;
+    // mp2;	 // Removed. Gcc said: warning: statement with no effect [-Wunused-value]
 }   /* End of EditClear   */
 /***************************  End of edit.c  ****************************/
